@@ -1,4 +1,4 @@
-# AppNanny
+# Duxify
 
 A Firebase and Accessibility Service powered remote Android application control system.
 
@@ -26,4 +26,4 @@ Kotlin, Android SDK, Firebase, Accessibility Service
 
 ## Developer
 
-br0xy
+Br0xy
