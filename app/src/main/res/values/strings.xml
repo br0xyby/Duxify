@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Duxify</string>
+    <string name="accessibility_service_description">AppBlocker\'ın uygulama açılışlarını tespit edip engelleme yapabilmesi için bu izin gereklidir.</string>
+</resources>

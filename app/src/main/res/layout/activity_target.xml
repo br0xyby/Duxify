@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp">
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bu cihaz Hedef modunda.\nDevam etmek için erişilebilirlik iznini aç."
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginBottom="30dp" />
+
+    <Button
+        android:id="@+id/btnGrantPermission"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Erişilebilirlik İznini Aç"
+        android:textSize="16sp"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="3dp"
+        android:layout_height="16dp"
+        android:text=""
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/btnSendAppList"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Uygulama Listesini Gönder"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>

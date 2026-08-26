@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1003697615528",
+    "firebase_url": "https://appblocker-83f69-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "appblocker-83f69",
+    "storage_bucket": "appblocker-83f69.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003697615528:android:4f6d89c6c1d8226722489d",
+        "android_client_info": {
+          "package_name": "com.br0xy.appblocker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUjV7hOPYmtdLPuDaXifucUtPrShtlPCg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
