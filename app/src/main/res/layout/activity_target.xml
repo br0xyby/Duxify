@@ -7,6 +7,38 @@
     android:padding="32dp">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eşleştirme Kodu"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvPairingStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Henüz eşleştirilmedi"
+        android:textSize="14sp"
+        android:layout_marginBottom="12dp" />
+
+    <EditText
+        android:id="@+id/etPairingCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Kontrolcüdeki kodu gir (örn. 482913)"
+        android:inputType="number"
+        android:maxLength="6"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnSaveCode"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Kodu Kaydet"
+        android:layout_marginBottom="30dp" />
+
+    <TextView
         android:id="@+id/tvInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,8 +57,8 @@
 
     <TextView
         android:id="@+id/tvStatus"
-        android:layout_width="3dp"
-        android:layout_height="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text=""
         android:textSize="14sp" />
 
@@ -36,5 +68,11 @@
         android:layout_height="60dp"
         android:text="Uygulama Listesini Gönder"
         android:layout_marginTop="20dp" />
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Bu Cihazdan Çık"
+        android:layout_marginTop="12dp" />
 
 </LinearLayout>

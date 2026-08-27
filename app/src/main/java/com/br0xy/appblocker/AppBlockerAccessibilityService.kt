@@ -12,6 +12,9 @@ import com.google.firebase.database.ValueEventListener
 
 class AppBlockerAccessibilityService : AccessibilityService() {
 
+    private val prefsName = "AppBlockerPrefs"
+    private val keyPairingCode = "pairing_code"
+
     private var currentStatus: String = "allowed"
     private var blockedPackageNames: Set<String> = emptySet()
 
@@ -19,7 +22,6 @@ class AppBlockerAccessibilityService : AccessibilityService() {
         super.onServiceConnected()
         Log.d("AppBlockerDebug", "Servis bağlandı!")
 
-        // Servis ayarlarını kod içinde manuel olarak zorla ayarla
         val info = AccessibilityServiceInfo()
         info.eventTypes = AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
         info.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC
@@ -27,35 +29,38 @@ class AppBlockerAccessibilityService : AccessibilityService() {
         info.notificationTimeout = 100
         serviceInfo = info
 
-        Log.d("AppBlockerDebug", "ServiceInfo manuel olarak ayarlandı")
+        val prefs = getSharedPreferences(prefsName, MODE_PRIVATE)
+        val code = prefs.getString(keyPairingCode, null)
+
+        if (code == null) {
+            Log.d("AppBlockerDebug", "Eşleştirme kodu yok, servis pasif kalacak")
+            return
+        }
+
+        Log.d("AppBlockerDebug", "Kullanılan eşleştirme kodu: $code")
 
         val database = FirebaseDatabase.getInstance()
 
-        database.getReference("status").addValueEventListener(object : ValueEventListener {
+        database.getReference("pairs/$code/status").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 currentStatus = snapshot.getValue(String::class.java) ?: "allowed"
                 Log.d("AppBlockerDebug", "Durum güncellendi: $currentStatus")
             }
-            override fun onCancelled(error: DatabaseError) {
-                Log.d("AppBlockerDebug", "Durum okuma hatası: ${error.message}")
-            }
+            override fun onCancelled(error: DatabaseError) {}
         })
 
-        database.getReference("blockedApps").addValueEventListener(object : ValueEventListener {
+        database.getReference("pairs/$code/blockedApps").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val typeIndicator = object : GenericTypeIndicator<List<String>>() {}
                 blockedPackageNames = (snapshot.getValue(typeIndicator) ?: emptyList()).toSet()
                 Log.d("AppBlockerDebug", "Engellenen uygulamalar: $blockedPackageNames")
             }
-            override fun onCancelled(error: DatabaseError) {
-                Log.d("AppBlockerDebug", "Liste okuma hatası: ${error.message}")
-            }
+            override fun onCancelled(error: DatabaseError) {}
         })
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         val packageName = event?.packageName?.toString() ?: return
-        Log.d("AppBlockerDebug", "Açılan uygulama: $packageName | durum: $currentStatus | engelli mi: ${blockedPackageNames.contains(packageName)}")
 
         if (blockedPackageNames.contains(packageName) && currentStatus == "blocked") {
             Log.d("AppBlockerDebug", "ENGELLENDİ: $packageName")

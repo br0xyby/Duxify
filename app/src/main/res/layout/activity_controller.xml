@@ -6,6 +6,15 @@
     android:padding="24dp">
 
     <TextView
+        android:id="@+id/tvPairingCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eşleştirme Kodu: ..."
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
         android:id="@+id/tvStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,6 +62,13 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="Seçimi Kaydet"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Bu Cihazdan Çık"
         android:layout_marginTop="12dp" />
 
 </LinearLayout>
